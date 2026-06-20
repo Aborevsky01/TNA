@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cached score data (large; provide via release / Zenodo, not in git)
+scores/
+
+# Generated outputs
+img/
+results/
+
+# Reference material — not needed to use the module
+notebooks/
+legacy/
+src/
+
+# Internal working notes (revision planning)
+docs/
+
+# LaTeX build artifacts (if the manuscript is added locally)
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.synctex.gz
+*.toc

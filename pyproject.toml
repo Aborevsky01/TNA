@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "epv-fdr"
+version = "0.1.0"
+description = "Test Null Adjustment: reliable FDR control in classification under distribution shift"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "Andrey Borevskiy" },
+    { name = "Attila Kertesz-Farkas" },
+]
+dependencies = [
+    "numpy>=1.23",
+    "scipy>=1.9",
+    "statsmodels>=0.13",
+]
+
+[project.optional-dependencies]
+# only needed to regenerate scores from raw images (see epv/data.py score_* scaffolds)
+scoring = ["torch", "torchvision", "torchxrayvision"]
+
+[tool.setuptools]
+packages = ["epv"]
