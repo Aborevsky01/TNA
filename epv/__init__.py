@@ -11,12 +11,14 @@ Quick start
     trusted = q <= 0.1                        # discoveries at 10% FDR
 """
 from .core import TNA, ground_truth_qvalues
+from .multi import MultiTNA, ground_truth_pooled
 from .pi0 import estimate_pi0, ESTIMATORS
 from .stats import (empirical_p_values, qvalues_from_pvalues,
                     qvalues_from_labels, calculate_fdr)
 
 __all__ = [
     "TNA", "ground_truth_qvalues",
+    "MultiTNA", "ground_truth_pooled",
     "estimate_pi0", "ESTIMATORS",
     "empirical_p_values", "qvalues_from_pvalues", "qvalues_from_labels", "calculate_fdr",
 ]
