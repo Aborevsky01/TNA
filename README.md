@@ -1,6 +1,6 @@
 # TNA — Test Null Adjustment
 
-**Reliable false discovery rate control in classification problems under distribution shift.**
+**Toward reliable false discovery rate control in classification problems under distribution shift.**
 
 Reference implementation for
 
@@ -151,16 +151,24 @@ them under `scores/`.
 ## Repository structure
 
 ```
-epv/                  the package
-├── __init__.py       public API
-├── core.py           TNA estimator (fit / transform / qvalues)
-├── stats.py          empirical p-values, BH q-values, ground truth
-├── multi.py          MultiTNA — one-vs-rest multi-label TNA
-├── pi0.py            pluggable π₀ estimators
-├── data.py           dataset loaders + model-scoring scaffolds
-├── plots.py          optional FDR-control diagnostics (needs matplotlib)
-└── ltt.py            Learn-Then-Test baseline (standalone)
+epv/                  the TNA package (pure numpy/scipy; matplotlib optional)
+├── __init__.py       public API: TNA, MultiTNA, estimate_pi0, ground_truth_qvalues, …
+├── core.py           TNA estimator — fit / transform / pvalues / qvalues.
+│                       Reconstructs the test null (TNA-/TNA+), shifts the neg/pos
+│                       boundary to the KDE crossing, and applies the step-5 affine
+│                       map to the null side only.
+├── stats.py          empirical p-values, Benjamini-Hochberg q-values, ground-truth
+│                       q-values from labels, and the Hoeffding-Bentkus p-value (LTT).
+├── pi0.py            pluggable π₀ estimators (storey, storey_step2, pounds,
+│                       nettleton, jiang, hist) and estimate_pi0().
+├── multi.py          MultiTNA — one-vs-rest TNA for multi-label problems.
+├── data.py           load_scores(name) for the cached score files + score_* scaffolds.
+├── plots.py          optional FDR-control / Q-Q diagnostics (needs matplotlib).
+└── ltt.py            Learn-Then-Test baseline (standalone; overlaid for comparison).
 examples/
-└── run_example.py    minimal end-to-end example
-scores/               cached discriminative scores (.npy) — see "Data"
+├── run_example.py    minimal end-to-end example (EPV vs TNA vs ground truth).
+└── run_ltt.py        run the LTT baseline and print its trusted-vs-FDR curve.
+scores/               cached discriminative scores (.npy) — not tracked; see "Data".
+pyproject.toml        package metadata / install config.
+requirements.txt      runtime dependencies (numpy, scipy, statsmodels).
 ```

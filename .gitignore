@@ -26,6 +26,9 @@ src/
 # Internal working notes (revision planning)
 docs/
 
+# Local LaTeX build sandbox (manuscript + flattened figures, not part of the code repo)
+paper_build/
+
 # LaTeX build artifacts (if the manuscript is added locally)
 *.aux
 *.bbl
